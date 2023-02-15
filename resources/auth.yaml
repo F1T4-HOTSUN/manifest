@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: auth
+  name: auth-deploy
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - env:
+        - name: SERVER_PORT
+          value: "8082"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_URL
+          value: redis-svc
+        - name: MEMBER_URL
+          value: member-svc
+        - name: MEMBER_PORT
+          value: "8081"
+        image: roheejae/ticketaka_auth:1.1
+        name: auth
+        ports:
+        - containerPort: 8082
+          name: auth
+        volumeMounts:
+        - name: tz-seoul
+          mountPath: /etc/localtime
+      volumes:
+      - name: tz-seoul
+        hostPath:
+          path: /usr/share/zoneinfo/Asia/Seoul
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: auth
+  name: auth-svc
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 8082
+    targetPort: 8082
+    nodePort: 30030
+  selector:
+    app: auth
