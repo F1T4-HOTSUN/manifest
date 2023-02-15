@@ -5,8 +5,8 @@ images:
 - name: /
   newName: /
 - name: roheejae/ticketaka-auth
-  newName: roheejae/ticketaka-auth
-  newTag: test-python
+  newName: roheejae/eyestalk-react
+  newTag: v0.0.4
 - name: roheejae/ticketaka-member
   newName: roheejae/ticketaka-member
 
