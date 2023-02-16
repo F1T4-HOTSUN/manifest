@@ -27,6 +27,10 @@ spec:
           value: member-svc
         - name: MEMBER_PORT
           value: "8081"
+        - name: PERFORMANCE_URL
+          value: performance-svc
+        - name: PERFORMANCE_PORT
+          value: "8080"
         image: roheejae/ticketaka-auth:v0.0.11
         name: auth
         ports:
