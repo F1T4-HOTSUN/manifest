@@ -1,6 +1,7 @@
 resources:
 - auth.yaml
 - member.yaml
-
+- redis.yaml
+- member-db.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
