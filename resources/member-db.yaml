@@ -33,7 +33,7 @@ metadata:
   labels:
     type: db
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 3306
       targetPort: 3306

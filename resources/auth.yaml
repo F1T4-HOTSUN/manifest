@@ -27,7 +27,7 @@ spec:
           value: member-svc
         - name: MEMBER_PORT
           value: "8081"
-        image: roheejae/ticketaka-auth:1.1
+        image: roheejae/ticketaka-auth:v0.0.11
         name: auth
         ports:
         - containerPort: 8082

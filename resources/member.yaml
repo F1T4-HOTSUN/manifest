@@ -29,7 +29,7 @@ spec:
           value: redis-svc
         - name: REDIS_PORT
           value: "6379" 
-        image: roheejae/ticketaka_member:1.0
+        image: roheejae/ticketaka_member:1.1
         name: member
         ports:
         - containerPort: 8081
