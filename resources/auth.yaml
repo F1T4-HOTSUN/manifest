@@ -31,7 +31,7 @@ spec:
           value: performance-svc
         - name: PERFORMANCE_PORT
           value: "8080"
-        image: roheejae/ticketaka-auth:v0.0.9
+        image: roheejae/ticketaka-auth:v0.0.13
         name: auth
         ports:
         - containerPort: 8082
