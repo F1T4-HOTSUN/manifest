@@ -5,14 +5,14 @@ images:
 - name: /
   newName: /
 - name: roheejae/ticketaka-auth
-  newTag: v0.0.16
+  newTag: v0.0.1
+- name: roheejae/ticketaka-frontend
+  newTag: v0.0.0
 - name: roheejae/ticketaka-member
   newTag: v0.0.3
 - name: roheejae/ticketaka-performance
   newTag: v0.0.0
 - name: roheejae/ticketaka-reservation
-  newTag: v0.0.0
-- name: roheejae/ticketaka-frontend
   newTag: v0.0.0
 resources:
 - ../../resources
