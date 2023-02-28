@@ -5,9 +5,9 @@ images:
 - name: /
   newName: /
 - name: roheejae/ticketaka-auth
-  newTag: v0.0.32
+  newTag: v0.0.21
 - name: roheejae/ticketaka-front
-  newTag: v0.0.23
+  newTag: v0.0.26
 - name: roheejae/ticketaka-frontend
   newTag: v0.0.0
 - name: roheejae/ticketaka-member
@@ -15,6 +15,6 @@ images:
 - name: roheejae/ticketaka-performance
   newTag: v0.0.0
 - name: roheejae/ticketaka-reservation
-  newTag: v0.0.15
+  newTag: v0.0.17
 resources:
 - ../../resources
