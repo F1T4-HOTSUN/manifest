@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ticketaka-member
+spec:
+  finalizers:
+  - kubernetes

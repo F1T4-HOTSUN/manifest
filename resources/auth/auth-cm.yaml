@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-cm
+  namespace: ticketaka-auth
+data:
+  SERVER_PORT: "8082"
+  REDIS_URL: redis-svc
+  REDIS_PORT: "6379"
+  MEMBER_URL: member-svc.ticketaka-member.svc.cluster.local
+  MEMBER_PORT: "8081"
+  PERFORMANCE_URL: performance-svc.ticketaka-performance.svc.cluster.local
+  PERFORMANCE_PORT: "8084"
+  RESERVATION_URL: reservation-svc.ticketaka-reservation.svc.cluster.local
+  RESERVATION_PORT: "8083"

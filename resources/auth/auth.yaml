@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: auth
+  name: auth-deploy
+  namespace: ticketaka-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - env:
+        - name: SERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: SERVER_PORT
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: REDIS_PORT
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: REDIS_URL
+        - name: MEMBER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: MEMBER_URL
+        - name: MEMBER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: MEMBER_PORT
+        - name: PERFORMANCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: PERFORMANCE_URL
+        - name: PERFORMANCE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: PERFORMANCE_PORT
+        - name: RESERVATION_URL
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: RESERVATION_URL
+        - name: RESERVATION_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: auth-cm
+              key: RESERVATION_PORT
+        image: roheejae/ticketaka-auth:v0.0.31
+        name: auth
+        ports:
+        - containerPort: 8082
+          name: auth
+        volumeMounts:
+        - name: tz-seoul
+          mountPath: /etc/localtime
+      volumes:
+      - name: tz-seoul
+        hostPath:
+          path: /usr/share/zoneinfo/Asia/Seoul
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: auth
+  name: auth-svc
+  namespace: ticketaka-auth
+spec:
+  type: NodePort
+  ports:
+  - port: 8082
+    targetPort: 8082
+    nodePort: 30030
+  selector:
+    app: auth
