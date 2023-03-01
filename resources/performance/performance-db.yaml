@@ -44,6 +44,17 @@ spec:
     type: db
 
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: performance-db-initdb-config
+  namespace: ticketaka-performance
+data:
+  init.sql: |
+    CREATE TABLE facility (facility_id char(8) NOT NULL,facility_name varchar(255) NOT NULL,facility_telno varchar(255) DEFAULT NULL,facility_relateurl text,facility_address text NOT NULL,facility_latitude decimal(10,7) DEFAULT NULL,facility_longitude decimal(11,7) DEFAULT NULL,PRIMARY KEY (facility_id));
+    CREATE TABLE performance (performance_id char(8) NOT NULL,facility_id char(8) NOT NULL,prf_title varchar(255) NOT NULL,prf_start_date date NOT NULL,prf_end_date date DEFAULT NULL,prf_cast varchar(255) DEFAULT NULL,prf_crew varchar(255) DEFAULT NULL,prf_runtime varchar(255) DEFAULT NULL,prf_prd_comp varchar(255) DEFAULT NULL,prf_viewing_age varchar(255) NOT NULL,prf_ticket_price varchar(255) DEFAULT NULL,prf_poster text,prf_story longtext,prf_genre varchar(255) NOT NULL,prf_openrun char(2) NOT NULL,prf_styurls text,prf_state char(10) NOT NULL,prf_loaded_at datetime NOT NULL,PRIMARY KEY (performance_id),KEY facility_id_idx (facility_id),CONSTRAINT facility_id FOREIGN KEY (facility_id) REFERENCES facility (facility_id));
+    CREATE TABLE prf_session (prf_session_id int NOT NULL AUTO_INCREMENT,performance_id char(8) NOT NULL,prf_session_date date NOT NULL,prf_session_time char(5) NOT NULL,remaining_seat int NOT NULL,total_seat int NOT NULL,PRIMARY KEY (prf_session_id),KEY performance_id_idx (performance_id),CONSTRAINT performance_id FOREIGN KEY (performance_id) REFERENCES performance (performance_id));
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -89,6 +100,8 @@ spec:
           mountPath: /etc/localtime
         - name: roll-db-storage
           mountPath: /var/lib/mysql
+        - name: prf-db-storage
+          mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: tz-seoul
         hostPath:
@@ -96,3 +109,6 @@ spec:
       - name: roll-db-storage
         persistentVolumeClaim:
           claimName: performance-db-pvc
+      - name: prf-db-storage
+        configMap:
+          name: performance-db-initdb-config

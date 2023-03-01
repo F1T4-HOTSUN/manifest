@@ -1,0 +1,134 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: reservation-db-pv
+  namespace: ticketaka-reservation
+  labels:
+    type: db
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /reservation-db-storage/
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: reservation-db-pvc
+  namespace: ticketaka-reservation
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reservation-db-svc
+  namespace: ticketaka-reservation
+  labels:
+    type: db
+spec:
+  type: NodePort
+  ports:
+    - port: 3308
+      targetPort: 3308
+  selector:
+    type: db
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reservation-db-initdb-config
+  namespace: ticketaka-reservation
+data:
+  init.sql: >
+    CREATE TABLE `rsv_member` (`member_id` bigint NOT NULL,`member_email`
+    varchar(255) DEFAULT NULL,PRIMARY KEY (`member_id`));
+    CREATE TABLE `reservation` (`reservation_id` bigint NOT NULL AUTO_INCREMENT,`member_id` bigint DEFAULT NULL,`performance_id` varchar(255) DEFAULT NULL, `performance_title` varchar(255) DEFAULT NULL, `reservation_create_at` datetime DEFAULT NULL, `reservation_date` date DEFAULT NULL, `reservation_deleted` varchar(255) DEFAULT NULL, `reservation_poster` text, `reservation_price` int DEFAULT NULL, `reservation_ticket_count` int DEFAULT NULL, `reservation_time` varchar(255) DEFAULT NULL, PRIMARY KEY (`reservation_id`), KEY `idx__member_id` (`member_id`));    
+    CREATE TABLE `deletereservation` (`reservation_id` int NOT NULL AUTO_INCREMENT,`member_id` int NOT NULL,`performance_id` char(8) NOT NULL,`reservation_ticket_count` int NOT NULL,`reservation_date` date NOT NULL,`reservation_time` char(5) NOT NULL,`reservation_price` int NOT NULL,`reservation_poster` text NOT NULL,`reservation_deleted` char(1) NOT NULL,`reservation_create_at` datetime NOT NULL,`deleted_date_time` datetime NOT NULL,PRIMARY KEY (`reservation_id`));
+    CREATE VIEW unit_reservation AS SELECT reservation_id, member_id, performance_id, performance_title, reservation_create_at, reservation_date, reservation_deleted,reservation_poster,reservation_price,reservation_ticket_count,reservation_time from reservation union SELECT reservation_id, member_id, performance_id, performance_title, reservation_create_at, reservation_date, reservation_deleted,reservation_poster,reservation_price,reservation_ticket_count,reservation_time from deletereservation;
+    DELIMITER // 
+    CREATE TRIGGER trg_deletedReservationTBL 
+      AFTER DELETE 
+        ON reservation 
+      FOR EACH ROW 
+      BEGIN 
+        INSERT INTO deleteReservation(reservation_id, member_id,performance_id, performance_title, reservation_ticket_count, reservation_date, reservation_time, reservation_price, reservation_poster, reservation_deleted, reservation_create_at, deleted_date_time) 
+        VALUES (OLD.reservation_id, OLD.member_id, OLD.performance_id, OLD.performance_title, OLD.reservation_ticket_count, OLD.reservation_date, OLD.reservation_time, OLD.reservation_price, OLD.reservation_poster, 'Y', OLD.reservation_create_at, current_timestamp()); 
+    END; 
+    // DELIMITER ;
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: reservation-db-sec
+  namespace: ticketaka-reservation
+data:
+  MARIADB_ROOT_PASSWORD: cGFzczEyMyM=
+  MARIADB_DATABASE: dGlja2V0YWth
+  MARIADB_USER: dXNlcg==
+  MARIADB_PASSWORD: dXNlcg==
+  MYSQL_TCP_PORT: MzMwOA==
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    type: db
+  name: reservation-db
+  namespace: ticketaka-reservation
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      type: db
+  template:
+    metadata:
+      labels:
+        type: db
+    spec:
+      containers:
+        - image: mariadb:10.7.8-focal
+          name: reservation-db
+          args:
+            - --character-set-server=utf8
+            - --collation-server=utf8_general_ci
+            - --explicit_defaults_for_timestamp=1
+          envFrom:
+          - secretRef:
+              name: reservation-db-sec
+          env:
+            - name: MARIADB_ROOT_HOST
+              value: "%"
+          ports:
+            - containerPort: 3308
+              name: reservation-db
+          volumeMounts:
+            - name: tz-seoul
+              mountPath: /etc/localtime
+            - name: roll-db-storage
+              mountPath: /var/lib/mysql
+            - name: rsv-db-storage
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: tz-seoul
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Seoul
+        - name: roll-db-storage
+          persistentVolumeClaim:
+            claimName: reservation-db-pvc
+        - name: rsv-db-storage
+          configMap:
+            name: reservation-db-initdb-config

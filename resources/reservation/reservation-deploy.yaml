@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: reservation-deploy-sec
+  namespace: ticketaka-reservation
+data:
+  SPRING_DATASOURCE_USERNAME: dXNlcg==
+  SPRING_DATASOURCE_PASSWORD: dXNlcg==
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: reservation
+  name: reservation-deploy
+  namespace: ticketaka-reservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservation
+  template:
+    metadata:
+      labels:
+        app: reservation
+    spec:
+      containers:
+        - env:
+            - name: SERVER_PORT
+              value: "8083"
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mariadb://reservation-db-svc:3308/ticketaka?serverTimezone=Asia/Seoul
+          envFrom:
+            - secretRef:
+                name: reservation-deploy-sec
+          image: roheejae/ticketaka-reservation:v0.0.20
+          name: reservation
+          ports:
+            - containerPort: 8083
+              name: reservation
+          volumeMounts:
+            - name: tz-seoul
+              mountPath: /etc/localtime
+      volumes:
+        - name: tz-seoul
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Seoul
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: reservation
+  name: reservation-svc
+  namespace: ticketaka-reservation
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8083
+      targetPort: 8083
+  selector:
+    app: reservation
