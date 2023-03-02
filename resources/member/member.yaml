@@ -4,7 +4,7 @@ metadata:
   labels:
     app: member
   name: member-deploy
-  namespace: default
+  namespace: ticketaka-member
 spec:
   replicas: 1
   selector:
