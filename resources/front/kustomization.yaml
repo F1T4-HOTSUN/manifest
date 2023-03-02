@@ -1,7 +1,8 @@
 resources:
-- auth.yaml
-- auth-cm.yaml
-- auth-redis.yaml
-- auth.yaml
+- ns-ticketaka-front.yaml
+- ticketaka-front-cm.yaml
+- ticketaka-front-secret.yaml
+- ticketaka-front-deploy.yaml
+- ticketaka-front-svc.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
