@@ -47,7 +47,7 @@ spec:
             configMapKeyRef:
               name: member-cm
               key: SPRING_DATASOURCE_PASSWORD
-        image: roheejae/ticketaka_member:1.1
+        image: roheejae/ticketaka-member:1.1
         name: member
         ports:
         - containerPort: 8081
