@@ -4,7 +4,7 @@ images:
 - name: /
   newName: /
 - name: roheejae/ticketaka-auth
-  newTag: v0.0.21
+  newTag: v0.0.34
 resources:
 - ns-auth.yaml
 - auth-cm.yaml
