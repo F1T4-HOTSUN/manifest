@@ -21,7 +21,9 @@ kubectl delete -f performance/performance-svc.yaml
 
 echo "Reservation Deploy Start!!"
 
-kubectl delete -f reservation/reservation.yml
+kubectl delete -f reservation/ns-reservation.yaml
+kubectl delete -f reservation/reservation-db.yaml
+kubectl delete -f reservation/reservation-deploy.yaml
 
 echo "Front deploy Start!!"
 

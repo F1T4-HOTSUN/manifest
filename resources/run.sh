@@ -21,7 +21,9 @@ kubectl apply -f performance/performance-svc.yaml
 
 echo "Reservation Deploy Start!!"
 
-kubectl apply -f reservation/reservation.yml
+kubectl apply -f reservation/ns-reservation.yaml
+kubectl apply -f reservation/reservation-db.yaml
+kubectl apply -f reservation/reservation-deploy.yaml
 echo "Front Deploy Start!!"
 
 kubectl apply -f front/ns-ticketaka-front.yaml

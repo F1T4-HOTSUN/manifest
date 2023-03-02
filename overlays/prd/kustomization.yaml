@@ -18,4 +18,8 @@ images:
 - name: roheejae/ticketaka-reservation
   newTag: v0.0.17
 resources:
-- ../../resources
+- ../../resources/auth
+- ../../resources/front
+- ../../resources/member
+- ../../resources/performance
+- ../../resources/reservation

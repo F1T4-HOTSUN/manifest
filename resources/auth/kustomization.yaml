@@ -1,7 +1,7 @@
 resources:
-- auth/.yaml
-- auth/auth-cm.yaml
-- auth/auth-redis.yaml
-- auth/auth.yaml
+- auth.yaml
+- auth-cm.yaml
+- auth-redis.yaml
+- auth.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

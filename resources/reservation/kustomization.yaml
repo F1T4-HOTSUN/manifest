@@ -1,7 +1,6 @@
 resources:
-- auth/.yaml
-- auth/auth-cm.yaml
-- auth/auth-redis.yaml
-- auth/auth.yaml
+- ns-reservation.yaml
+- reservation-db.yaml
+- reservation-deploy.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
