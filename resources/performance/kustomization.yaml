@@ -9,3 +9,6 @@ resources:
 - performance-svc.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: roheejae/ticketaka-performance
+  newTag: v0.0.23
