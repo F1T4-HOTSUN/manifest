@@ -1,6 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: roheejae/ticketaka-reservation
+  newTag: v0.0.21
 resources:
 - ns-reservation.yaml
 - reservation-db.yaml
 - reservation-deploy.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
