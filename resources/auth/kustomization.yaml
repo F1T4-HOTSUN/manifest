@@ -1,5 +1,5 @@
 resources:
-- auth.yaml
+- ns-auth.yaml
 - auth-cm.yaml
 - auth-redis.yaml
 - auth.yaml
