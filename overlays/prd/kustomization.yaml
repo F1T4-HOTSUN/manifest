@@ -1,7 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
-
 images:
 - name: /
   newName: /
@@ -9,8 +7,6 @@ images:
   newTag: v0.0.21
 - name: roheejae/ticketaka-front
   newTag: v0.0.36
-- name: roheejae/ticketaka-frontend
-  newTag: v0.0.0
 - name: roheejae/ticketaka-member
   newTag: v0.0.12
 - name: roheejae/ticketaka-performance
