@@ -1,9 +1,3 @@
-echo "Auth Deploy Start!!"
-kubectl apply -f auth/ns-auth.yaml
-kubectl apply -f auth/auth-cm.yaml
-kubectl apply -f auth/auth.yaml
-kubectl apply -f auth/auth-redis.yaml
-
 echo "Member Deploy Start!!"
 kubectl apply -f member/ns-member.yaml
 kubectl apply -f member/member-cm.yaml

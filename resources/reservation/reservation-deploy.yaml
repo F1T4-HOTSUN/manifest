@@ -35,7 +35,7 @@ spec:
           envFrom:
             - secretRef:
                 name: reservation-deploy-sec
-          image: roheejae/ticketaka-reservation:v0.0.20
+          image: roheejae/ticketaka-reservation:v0.0.23
           name: reservation
           ports:
             - containerPort: 8083
