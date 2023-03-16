@@ -45,16 +45,16 @@ spec:
             configMapKeyRef:
               name: performance-configmap
               key: SPRING_REDIS_PORT
-        - name: RESERVATION_URL
+        - name: MEMBER_URL
           valueFrom:
             configMapKeyRef:
               name: performance-configmap
-              key: RESERVATION_URL
-        - name: RESERVATION_PORT
+              key: MEMBER_URL
+        - name: MEMBER_PORT
           valueFrom:
             configMapKeyRef:
               name: performance-configmap
-              key: RESERVATION_PORT
+              key: MEMBER_PORT
         image: roheejae/ticketaka-performance:v0.0.26
         name: performance
         ports:
