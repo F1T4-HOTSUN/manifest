@@ -47,6 +47,11 @@ spec:
             configMapKeyRef:
               name: member-cm
               key: SPRING_DATASOURCE_PASSWORD
+        - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: member-secret
+                key: PRIVATE_KEY
         image: roheejae/ticketaka-member:v0.0.14
         name: member
         ports:
