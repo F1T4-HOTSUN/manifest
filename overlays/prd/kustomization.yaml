@@ -10,7 +10,7 @@ images:
 - name: roheejae/ticketaka-member
   newTag: v0.0.12
 - name: roheejae/ticketaka-performance
-  newTag: v0.0.33
+  newTag: v0.0.34
 - name: roheejae/ticketaka-reservation
   newTag: v0.0.21
 resources:
