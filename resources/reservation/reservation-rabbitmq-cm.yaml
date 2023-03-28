@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: definitions
+  namespace: ticketaka-reservation
+data:
+  definitions.json: |
+    {
+      "rabbit_version": "3.8.11",
+      "rabbitmq_version": "3.8.11",
+      "product_name": "RabbitMQ",
+      "product_version": "3.8.11",
+      "users": [
+        {
+          "name": "user",
+          "password_hash": "cdnzj/da8rtmdq8Aq6OB6zSt9jNzsCIBgClsUn+5+EouW0qg",
+          "hashing_algorithm": "rabbit_password_hashing_sha256",
+          "tags": "administrator",
+          "limits": {}
+        }
+      ],
+      "vhosts": [
+        {
+          "name": "/"
+        }
+      ],
+      "permissions": [
+        {
+          "user": "user",
+          "vhost": "/",
+          "configure": ".*",
+          "write": ".*",
+          "read": ".*"
+        }
+      ],
+      "topic_permissions": [],
+      "parameters": [],
+      "global_parameters": [
+        {
+          "name": "cluster_name",
+          "value": "rabbit@73cf1fdf05d2"
+        },
+        {
+          "name": "internal_cluster_id",
+          "value": "rabbitmq-cluster-id-j-jeqGlk6rJYvqR_Tb06yw"
+        }
+      ],
+      "policies": [],
+      "queues": [
+        {
+          "name": "mail.queue",
+          "vhost": "/",
+          "durable": true,
+          "auto_delete": false,
+          "arguments": {
+            "x-queue-type": "quorum"
+          }
+        }
+      ],
+      "exchanges": [
+        {
+          "name": "mail.exchange",
+          "vhost": "/",
+          "type": "direct",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        }
+      ],
+      "bindings": [
+        {
+          "source": "mail",
+          "vhost": "/",
+          "destination": "mail",
+          "destination_type": "queue",
+          "routing_key": "mail.key",
+          "arguments": {}
+        }
+      ]
+    }

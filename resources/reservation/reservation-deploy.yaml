@@ -7,6 +7,8 @@ metadata:
 data:
   SPRING_DATASOURCE_USERNAME: dXNlcg==
   SPRING_DATASOURCE_PASSWORD: dXNlcg==
+  RABBITMQ_USERNAME: dXNlcg==
+  RABBITMQ_PASSWORD: dXNlcg==
 
 ---
 apiVersion: apps/v1
@@ -32,10 +34,14 @@ spec:
               value: "8083"
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mariadb://reservation-db-svc:3308/ticketaka?serverTimezone=Asia/Seoul
+            - name: RABBITMQ_HOST
+              value: reservation-rabbitmq-cluster-nodes
+            - name: RABBITMQ_PORT
+              value: "5672"
           envFrom:
             - secretRef:
                 name: reservation-deploy-sec
-          image: roheejae/ticketaka-reservation:v0.0.23
+          image: roheejae/ticketaka-reservation:v0.0.26
           name: reservation
           ports:
             - containerPort: 8083

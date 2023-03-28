@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: reservation-mail-sec
+  namespace: ticketaka-reservation
+data:
+  MAIL_PASSWORD: dnNwc3d0dmR5ZmRtc3RtYg==
+  MAIL_USERNAME: cHJvamVjdHRpY2tldGFrYUBnbWFpbC5jb20=
+  RABBITMQ_ID: dXNlcg==
+  RABBITMQ_PASSWORD: dXNlcg==
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: reservation
+  name: reservation-mail
+  namespace: ticketaka-reservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mail
+  template:
+    metadata:
+      labels:
+        app: mail
+    spec:
+      containers:
+        - env:
+            - name: MAIL_SERVER
+              value: smtp.gmail.com
+            - name: MAIL_PORT
+              value: "465"
+            - name: RABBITMQ_HOST
+              value: reservation-rabbitmq-cluster-nodes
+            - name: RABBITMQ_PORT
+              value: "5672"
+          envFrom:
+            - secretRef:
+                name: reservation-mail-sec
+          image: ehdwn15100/ticketaka-mail:1.2
+          name: mail
+      restartPolicy: Always
