@@ -6,7 +6,7 @@ images:
 - name: roheejae/ticketaka-auth
   newTag: v0.0.21
 - name: roheejae/ticketaka-front
-  newTag: v0.0.36
+  newTag: v0.0.38
 - name: roheejae/ticketaka-member
   newTag: v0.0.12
 - name: roheejae/ticketaka-performance
