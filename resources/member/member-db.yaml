@@ -12,7 +12,7 @@ spec:
     - ReadWriteMany
   awsElasticBlockStore:
     fsType: ext4
-    volumeID: vol-xxxxxxxxxxxx
+    volumeID: vol-060e3e705307fe0df
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem
   hostPath:
