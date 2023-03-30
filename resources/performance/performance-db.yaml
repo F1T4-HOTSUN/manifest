@@ -1,32 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: performance-db-pv
-  namespace: ticketaka-performance
-  labels:
-    type: db
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/performance-db-storage/"
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: performance-db-pvc
-  namespace: ticketaka-performance
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
----
-apiVersion: v1
 kind: Service
 metadata:
   name: performance-db-svc
@@ -97,17 +69,12 @@ spec:
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
-        - name: roll-db-storage
-          mountPath: /var/lib/mysql
         - name: prf-db-storage
           mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: tz-seoul
         hostPath:
           path: /usr/share/zoneinfo/Asia/Seoul
-      - name: roll-db-storage
-        persistentVolumeClaim:
-          claimName: performance-db-pvc
       - name: prf-db-storage
         configMap:
           name: performance-db-initdb-config

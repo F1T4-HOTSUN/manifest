@@ -1,33 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: reservation-db-pv
-  namespace: ticketaka-reservation
-  labels:
-    type: db
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: /reservation-db-storage/
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: reservation-db-pvc
-  namespace: ticketaka-reservation
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-
----
-apiVersion: v1
 kind: Service
 metadata:
   name: reservation-db-svc
@@ -118,17 +89,13 @@ spec:
           volumeMounts:
             - name: tz-seoul
               mountPath: /etc/localtime
-            - name: roll-db-storage
-              mountPath: /var/lib/mysql
+
             - name: rsv-db-storage
               mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: tz-seoul
           hostPath:
             path: /usr/share/zoneinfo/Asia/Seoul
-        - name: roll-db-storage
-          persistentVolumeClaim:
-            claimName: reservation-db-pvc
         - name: rsv-db-storage
           configMap:
             name: reservation-db-initdb-config
