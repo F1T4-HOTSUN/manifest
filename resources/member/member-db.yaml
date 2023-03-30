@@ -67,8 +67,6 @@ spec:
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
-        - name: roll-db-storage
-          mountPath: /var/lib/mysql
       volumes:
       - name: tz-seoul
         hostPath:
