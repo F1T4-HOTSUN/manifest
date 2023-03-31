@@ -12,13 +12,6 @@ spec:
           spec:
             containers:
             - name: rabbitmq
-              volumeMounts:
-              - name: definitions
-                mountPath: /path/to/exported/
-            volumes:
-            - name: definitions
-              configMap:
-                name: definitions
   persistence:
     storage: 10Gi
   rabbitmq:
