@@ -26,14 +26,15 @@ data:
     CREATE TABLE `reservation` (`reservation_id` bigint NOT NULL AUTO_INCREMENT,`member_id` bigint DEFAULT NULL,`performance_id` varchar(255) DEFAULT NULL, `performance_title` varchar(255) DEFAULT NULL, `reservation_create_at` datetime DEFAULT NULL, `reservation_date` date DEFAULT NULL, `reservation_deleted` varchar(255) DEFAULT NULL, `reservation_poster` text, `reservation_price` int DEFAULT NULL, `reservation_ticket_count` int DEFAULT NULL, `reservation_time` varchar(255) DEFAULT NULL, PRIMARY KEY (`reservation_id`), KEY `idx__member_id` (`member_id`));    
     CREATE TABLE `deletereservation` (`reservation_id` int NOT NULL AUTO_INCREMENT,`member_id` int NOT NULL,`performance_id` char(8) NOT NULL,`performance_title` varchar(255) DEFAULT NULL,`reservation_ticket_count` int NOT NULL,`reservation_date` date NOT NULL,`reservation_time` char(5) NOT NULL,`reservation_price` int NOT NULL,`reservation_poster` text NOT NULL,`reservation_deleted` char(1) NOT NULL,`reservation_create_at` datetime NOT NULL,`deleted_date_time` datetime NOT NULL,PRIMARY KEY (`reservation_id`));
     CREATE VIEW unit_reservation AS SELECT reservation_id, member_id, performance_id, performance_title, reservation_create_at, reservation_date, reservation_deleted,reservation_poster,reservation_price,reservation_ticket_count,reservation_time from reservation union SELECT reservation_id, member_id, performance_id, performance_title, reservation_create_at, reservation_date, reservation_deleted,reservation_poster,reservation_price,reservation_ticket_count,reservation_time from deletereservation;
-    DELIMITER // 
+    DELIMITER $$ 
     CREATE TRIGGER trg_deletedReservationTBL 
       AFTER DELETE 
         ON reservation 
       FOR EACH ROW 
       BEGIN 
         INSERT INTO deleteReservation(reservation_id, member_id,performance_id, performance_title, reservation_ticket_count, reservation_date, reservation_time, reservation_price, reservation_poster, reservation_deleted, reservation_create_at, deleted_date_time) VALUES (OLD.reservation_id, OLD.member_id, OLD.performance_id, OLD.performance_title, OLD.reservation_ticket_count, OLD.reservation_date, OLD.reservation_time, OLD.reservation_price, OLD.reservation_poster, 'Y', OLD.reservation_create_at, current_timestamp()); 
-    END;
+    END $$ 
+    DELIMITER ;
 ---
 apiVersion: v1
 kind: Secret
