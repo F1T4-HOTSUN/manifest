@@ -33,7 +33,7 @@ data:
       FOR EACH ROW 
         BEGIN 
           INSERT INTO deleteReservation(reservation_id, member_id,performance_id, performance_title, reservation_ticket_count, reservation_date, reservation_time, reservation_price, reservation_poster, reservation_deleted, reservation_create_at, deleted_date_time) VALUES (OLD.reservation_id, OLD.member_id, OLD.performance_id, OLD.performance_title, OLD.reservation_ticket_count, OLD.reservation_date, OLD.reservation_time, OLD.reservation_price, OLD.reservation_poster, 'Y', OLD.reservation_create_at, current_timestamp()); 
-    END $$ 
+    END$$ 
     DELIMITER ;
 ---
 apiVersion: v1
