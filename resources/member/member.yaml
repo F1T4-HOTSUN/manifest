@@ -72,7 +72,7 @@ metadata:
   labels:
     app: member
   name: member-svc
-  namespace: default
+  namespace: ticketaka-member
 spec:
   type: ClusterIP
   ports:
