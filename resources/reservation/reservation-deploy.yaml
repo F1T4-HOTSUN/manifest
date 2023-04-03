@@ -61,13 +61,10 @@ kind: Service
 metadata:
   labels:
     app: reservation
-    service.beta.kubernetes.io/aws-load-balancer-type: external
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
   name: reservation-svc
   namespace: ticketaka-reservation
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 8080
     name: http-rsv
