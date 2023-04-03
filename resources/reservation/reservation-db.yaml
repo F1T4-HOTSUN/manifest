@@ -36,7 +36,7 @@ data:
   MARIADB_DATABASE: dGlja2V0YWth
   MARIADB_USER: dXNlcg==
   MARIADB_PASSWORD: dXNlcg==
-  MYSQL_TCP_PORT: MzMwOA==
+  MYSQL_TCP_PORT: MzMwNg==
 
 ---
 apiVersion: apps/v1
