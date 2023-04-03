@@ -23,15 +23,15 @@ data:
         }
 
         location /member {
-            proxy_pass http://192.168.56.100:32132; # 주소 변경!
+            proxy_pass member-svc.ticketaka-member.svc.cluster.local:8081; # 주소 변경!
         }
 
         location /performance {
-            proxy_pass http://192.168.56.100:32132; # 주소 변경!
+            proxy_pass performance-svc.ticketaka-performance.svc.cluster.local:8084; # 주소 변경!
         }
 
         location /reservation {
-            proxy_pass http://192.168.56.100:32132; # 주소 변경!
+            proxy_pass reservation-svc.ticketaka-reservation.svc.cluster.local:8080; # 주소 변경!
         }
 
 
