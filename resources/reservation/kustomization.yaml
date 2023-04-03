@@ -4,7 +4,6 @@ images:
 - name: roheejae/ticketaka-reservation
   newTag: v0.0.26
 resources:
-- ns-reservation.yaml
 - reservation-consumer.yaml
 - reservation-db.yaml
 - reservation-deploy.yaml
