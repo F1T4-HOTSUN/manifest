@@ -1,12 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout # Rollout으로 생성
 metadata:
   labels:
     app: member
   name: member-deploy
   namespace: ticketaka-member
 spec:
-  replicas: 1
+  replicas: 3
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: member
@@ -65,6 +66,13 @@ spec:
         hostPath:
           path: /usr/share/zoneinfo/Asia/Seoul
       restartPolicy: Always
+  strategy:
+    canary:
+      maxSurge: 33%"    # canary 배포로 생성할 pod의 비율
+      maxUnavailable: 0  # 업데이트 될 때 사용할 수 없는 pod의 최대 수
+      steps:
+      - setWeight: 33    # 카나리로 배포된 서버로 전송해야될 트래픽 비율
+      - pause: { duration: 10m }        # AutoPromotion Time (하단 설명 참조)
 ---
 apiVersion: v1
 kind: Service
