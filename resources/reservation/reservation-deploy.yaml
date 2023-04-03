@@ -67,5 +67,8 @@ spec:
   type: ClusterIP
   ports:
   - port: 8080
+    name: http-rsv
+    targetPort: 8080
+    protocol: TCP
   selector:
     app: reservation
