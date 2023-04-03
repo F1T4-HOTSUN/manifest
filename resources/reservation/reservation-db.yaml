@@ -8,8 +8,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 3308
-      targetPort: 3308
+    - port: 3306
+      targetPort: 3306
   selector:
     type: db
 
@@ -72,7 +72,7 @@ spec:
             - name: MARIADB_ROOT_HOST
               value: "%"
           ports:
-            - containerPort: 3308
+            - containerPort: 3306
               name: reservation-db
           volumeMounts:
             - name: tz-seoul
