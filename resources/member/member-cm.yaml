@@ -5,7 +5,7 @@ metadata:
   namespace: ticketaka-member
 data:
   SERVER_PORT: "8081"
-  SPRING_DATASOURCE_URL: jdbc:mariadb://member-db-svc:3306/member?serverTimezone=Asia/Seoul
+  SPRING_DATASOURCE_URL: jdbc:mariadb://ip-10-0-166-152.ap-northeast-2.compute.internal:3306/member?serverTimezone=Asia/Seoul
   RESERVATION_URL: reservation-svc.ticketaka-reservation.svc.cluster.local
   RESERVATION_PORT: "8080"
   SPRING_DATASOURCE_USERNAME: user
