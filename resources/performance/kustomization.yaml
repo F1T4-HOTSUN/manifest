@@ -12,4 +12,3 @@ resources:
 - performance-redis.yaml
 - performance-secret.yaml
 - performance-svc.yaml
-- performance-data.yaml
