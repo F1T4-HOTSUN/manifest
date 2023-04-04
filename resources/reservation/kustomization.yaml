@@ -6,7 +6,6 @@ images:
 resources:
 - cluster-operator.yml
 - reservation-consumer.yaml
-- reservation-db.yaml
 - reservation-deploy.yaml
 - reservation-rabbitmq-cluster-conf.yaml
 - reservation-rabbitmq-cm.yaml

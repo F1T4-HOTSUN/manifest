@@ -1,7 +1,6 @@
 resources:
 - ns-member.yaml
 - member-cm.yaml
-- member-db.yaml
 - member-secret.yaml
 - member.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

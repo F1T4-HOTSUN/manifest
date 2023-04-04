@@ -8,7 +8,6 @@ images:
 resources:
 - ns-performance.yaml
 - performance-configmap.yaml
-- performance-db.yaml
 - performance-deploy.yaml
 - performance-redis.yaml
 - performance-secret.yaml
