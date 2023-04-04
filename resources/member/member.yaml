@@ -17,42 +17,42 @@ spec:
         app: member
     spec:
       containers:
-      # - env:
-      #   - name: SERVER_PORT
-      #     valueFrom:
-      #       configMapKeyRef:
-      #         name: member-cm
-      #         key: SERVER_PORT
-      #   - name: SPRING_DATASOURCE_URL
-      #     valueFrom:
-      #       configMapKeyRef:
-      #         name: member-cm
-      #         key: SPRING_DATASOURCE_URL        
-      #   - name: RESERVATION_URL
-      #     valueFrom:
-      #       configMapKeyRef:
-      #         name: member-cm
-      #         key: RESERVATION_URL
-      #   - name: RESERVATION_PORT
-      #     valueFrom: 
-      #       configMapKeyRef:
-      #         name: member-cm
-      #         key: RESERVATION_PORT
-      #   - name: SPRING_DATASOURCE_USERNAME
-      #     valueFrom:
-      #       configMapKeyRef:
-      #         name: member-cm
-      #         key: SPRING_DATASOURCE_USERNAME
-      #   - name: SPRING_DATASOURCE_PASSWORD
-      #     valueFrom:
-      #       configMapKeyRef:
-      #         name: member-cm
-      #         key: SPRING_DATASOURCE_PASSWORD
-      #   - name: PRIVATE_KEY
-      #     valueFrom:
-      #       secretKeyRef:
-      #         name: member-secret
-      #         key: PRIVATE_KEY
+      - env:
+        - name: SERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SERVER_PORT
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SPRING_DATASOURCE_URL        
+        - name: RESERVATION_URL
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: RESERVATION_URL
+        - name: RESERVATION_PORT
+          valueFrom: 
+            configMapKeyRef:
+              name: member-cm
+              key: RESERVATION_PORT
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SPRING_DATASOURCE_USERNAME
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SPRING_DATASOURCE_PASSWORD
+        - name: PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: member-secret
+              key: PRIVATE_KEY
         image: roheejae/ticketaka-member:v0.0.14
         name: member
         ports:
@@ -61,15 +61,15 @@ spec:
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
-        - name: member-cm
-          mountPath: /tmp/config
+        # - name: member-cm
+        #   mountPath: /tmp/config
       volumes:
       - name: tz-seoul
         hostPath:
           path: /usr/share/zoneinfo/Asia/Seoul
-      - name: member-cm
-        configMap:
-          name: member-cm
+      # - name: member-cm
+      #   configMap:
+      #     name: member-cm
       restartPolicy: Always
   strategy:
     canary:
