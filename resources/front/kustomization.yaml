@@ -1,6 +1,5 @@
 resources:
 - ns-ticketaka-front.yaml
-- ticketaka-front-cm.yaml
 - ticketaka-front-secret.yaml
 - ticketaka-front-deploy.yaml
 - ticketaka-front-svc.yaml

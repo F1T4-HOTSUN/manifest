@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout # Rollout으로 생성
 metadata:
   name: ticketaka-front
   namespace: ticketaka-front
@@ -7,6 +7,7 @@ metadata:
     app: ticketaka-front
 spec:
   replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: ticketaka-front
@@ -39,7 +40,14 @@ spec:
             secretKeyRef:
               name: ticketaka-front-secret
               key: REACT_APP_KOPIS_SECRET
-      volumes:
-      - name: ticketaka-front-cm
-        configMap:
-          name: ticketaka-front-cm
+      # volumes:
+      # - name: ticketaka-front-cm
+      #   configMap:
+      #     name: ticketaka-front-cm
+  strategy:
+    canary:
+      maxSurge: "50%"    # canary 배포로 생성할 pod의 비율
+      maxUnavailable: 0  # 업데이트 될 때 사용할 수 없는 pod의 최대 수
+      steps:
+      - setWeight: 50    # 카나리로 배포된 서버로 전송해야될 트래픽 비율
+      - pause: {}        # AutoPromotion Time (하단 설명 참조)
