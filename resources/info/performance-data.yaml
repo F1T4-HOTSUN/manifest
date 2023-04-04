@@ -40,7 +40,7 @@ spec:
             imagePullPolicy: Always
             env:
                 - name: DATABASE_HOST
-                  value: performance-db-svc
+                  value: 10.0.161.51
             envFrom:
                 - secretRef:
                     name: info-performance-sec
