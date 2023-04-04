@@ -22,11 +22,11 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        # volumeMounts:
-        # - mountPath: /etc/nginx/conf.d/default.conf
-        #   subPath: default.conf
-        #   readOnly: true
-        #   name: ticketaka-front-cm
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
+          readOnly: true
+          name: ticketaka-front-cm
         env:
         - name: REACT_APP_BASE_URL
           value: http://192.168.56.100:30030 # 여기 주소 바꿔주세염
@@ -40,10 +40,10 @@ spec:
             secretKeyRef:
               name: ticketaka-front-secret
               key: REACT_APP_KOPIS_SECRET
-      # volumes:
-      # - name: ticketaka-front-cm
-      #   configMap:
-      #     name: ticketaka-front-cm
+      volumes:
+      - name: ticketaka-front-cm
+        configMap:
+          name: ticketaka-front-cm
   strategy:
     canary:
       maxSurge: "50%"    # canary 배포로 생성할 pod의 비율
