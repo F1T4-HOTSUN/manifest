@@ -31,9 +31,9 @@ spec:
       containers:
         - env:
             - name: SERVER_PORT
-              value: "8083"
+              value: "8080"
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mariadb://reservation-db-svc:3308/ticketaka?serverTimezone=Asia/Seoul
+              value: jdbc:mariadb://reservation-db-svc:3306/ticketaka?serverTimezone=Asia/Seoul
             - name: RABBITMQ_HOST
               value: reservation-rabbitmq-cluster-nodes
             - name: RABBITMQ_PORT
@@ -44,7 +44,7 @@ spec:
           image: roheejae/ticketaka-reservation:v0.0.26
           name: reservation
           ports:
-            - containerPort: 8083
+            - containerPort: 8080
               name: reservation
           volumeMounts:
             - name: tz-seoul
@@ -66,6 +66,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8083
+  - port: 8080
+    name: http-rsv
+    targetPort: 8080
+    protocol: TCP
   selector:
     app: reservation
