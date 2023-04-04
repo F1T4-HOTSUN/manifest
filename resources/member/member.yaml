@@ -61,15 +61,10 @@ spec:
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
-        # - name: member-cm
-        #   mountPath: /tmp/config
       volumes:
       - name: tz-seoul
         hostPath:
           path: /usr/share/zoneinfo/Asia/Seoul
-      # - name: member-cm
-      #   configMap:
-      #     name: member-cm
       restartPolicy: Always
   strategy:
     canary:
