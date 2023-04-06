@@ -6,12 +6,12 @@ metadata:
 spec:
   replicas: 1
   override:
+    service:
+      type: LoadBalancer
     statefulSet:
       spec:
         template:
           spec:
-            service:
-              type: LoadBalancer
             containers:
             - name: rabbitmq
               volumeMounts:
