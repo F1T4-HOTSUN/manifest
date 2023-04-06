@@ -8,6 +8,8 @@ spec:
   override:
     statefulSet:
       spec:
+        service:
+            type: LoadBalancer
         template:
           spec:
             containers:
