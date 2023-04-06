@@ -8,10 +8,10 @@ spec:
   override:
     statefulSet:
       spec:
-        service:
-            type: LoadBalancer
         template:
           spec:
+            service:
+              type: LoadBalancer
             containers:
             - name: rabbitmq
               volumeMounts:
