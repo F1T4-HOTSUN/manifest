@@ -9,3 +9,4 @@ resources:
 - reservation-deploy.yaml
 - reservation-rabbitmq-cluster-conf.yaml
 - reservation-rabbitmq-cm.yaml
+- reservation-auth-consumer.yaml
