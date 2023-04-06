@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis-config
-  namespace: ticketaka-auth
+  namespace: ticketaka-member
 data:
   redis-config: |
     maxmemory 20mb
@@ -12,7 +12,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-svc
-  namespace: ticketaka-auth
+  namespace: ticketaka-member
   labels:
     app: redis
 spec:
@@ -29,7 +29,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: redis
-  namespace: ticketaka-auth
+  namespace: ticketaka-member
   labels:
       app: redis
 spec:
