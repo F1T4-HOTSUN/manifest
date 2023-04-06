@@ -95,7 +95,7 @@ data:
           "routing_key": "mail.key",
           "arguments": {}
         },
-		{
+        {
           "source": "valid",
           "vhost": "/",
           "destination": "valid",
