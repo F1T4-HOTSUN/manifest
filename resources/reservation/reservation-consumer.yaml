@@ -40,6 +40,6 @@ spec:
           envFrom:
             - secretRef:
                 name: reservation-mail-sec
-          image: ehdwn15100/ticketaka-mail:1.3
+          image: ehdwn15100/ticketaka-mail:1.4
           name: mail
       restartPolicy: Always
