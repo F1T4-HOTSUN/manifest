@@ -55,11 +55,29 @@ data:
           "arguments": {
             "x-queue-type": "quorum"
           }
+        },
+        {
+          "name": "valid.queue",
+          "vhost": "/",
+          "durable": true,
+          "auto_delete": false,
+          "arguments": {
+            "x-queue-type": "quorum"
+          }
         }
       ],
       "exchanges": [
         {
           "name": "mail.exchange",
+          "vhost": "/",
+          "type": "direct",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        },
+        {
+          "name": "valid.exchange",
           "vhost": "/",
           "type": "direct",
           "durable": true,
@@ -75,6 +93,14 @@ data:
           "destination": "mail",
           "destination_type": "queue",
           "routing_key": "mail.key",
+          "arguments": {}
+        },
+		{
+          "source": "valid",
+          "vhost": "/",
+          "destination": "valid",
+          "destination_type": "queue",
+          "routing_key": "valid.key",
           "arguments": {}
         }
       ]
