@@ -4,14 +4,14 @@ metadata:
   name: reservation-rabbitmq-cluster
   namespace: ticketaka-reservation
 spec:
+  service:
+    type: LoadBalancer
   replicas: 1
   override:
     statefulSet:
       spec:
         template:
           spec:
-            service:
-              type: LoadBalancer
             containers:
             - name: rabbitmq
               volumeMounts:
