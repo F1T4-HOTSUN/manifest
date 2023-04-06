@@ -11,8 +11,8 @@ data:
   SPRING_DATASOURCE_USERNAME: user
   SPRING_DATASOURCE_PASSWORD: user
   RABBITMQ_HOST: reservation-rabbitmq-cluster-nodes.ticketaka-reservation.svc.cluster.local
-  RABBITMQ_PORT: 5672
+  RABBITMQ_PORT: "5672"
   RABBITMQ_USERNAME: user
   RABBITMQ_PASSWORD: user
   REDIS_HOST: redis-svc
-  REDIS_PORT: 6379
+  REDIS_PORT: "6379"
