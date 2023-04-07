@@ -10,7 +10,8 @@ spec:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout # Rollout으로 생성
     name: performance-deploy
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 status:
   currentReplicas: 2
   desiredReplicas: 2
@@ -76,6 +77,13 @@ spec:
         ports:
         - containerPort: 8084
           name: performance
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000M
+          requests:
+            cpu: 400m
+            memory: 500M
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
