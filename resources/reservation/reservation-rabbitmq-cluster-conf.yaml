@@ -8,8 +8,6 @@ spec:
     type: LoadBalancer
   replicas: 1
   override:
-    service:
-      type: LoadBalancer
     statefulSet:
       spec:
         template:

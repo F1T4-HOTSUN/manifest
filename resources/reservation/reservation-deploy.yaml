@@ -9,6 +9,23 @@ data:
   SPRING_DATASOURCE_PASSWORD: dXNlcg==
   RABBITMQ_USERNAME: dXNlcg==
   RABBITMQ_PASSWORD: dXNlcg==
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: reservation-deploy-hpa
+  namespace: ticketaka-reservation
+spec:
+  maxReplicas: 4
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout # Rollout으로 생성
+    name: reservation-deploy
+  targetCPUUtilizationPercentage: 50
+status:
+  currentReplicas: 2
+  desiredReplicas: 2
 
 ---
 apiVersion: argoproj.io/v1alpha1
