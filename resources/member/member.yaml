@@ -17,12 +17,6 @@ spec:
       target:
         type: Utilization
         averageUtilization: 80
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
 status:
   currentReplicas: 2
   desiredReplicas: 2
