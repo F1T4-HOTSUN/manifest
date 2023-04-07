@@ -63,7 +63,7 @@ spec:
           envFrom:
             - secretRef:
                 name: reservation-mail-sec
-          image: ehdwn15100/ticketaka-mail:1.5
+          image: ehdwn15100/test-ticketaka-mail:1.0
           name: mail
           resources:
             limits:
