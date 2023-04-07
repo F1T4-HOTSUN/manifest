@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: member-deploy-hpa
@@ -10,8 +10,19 @@ spec:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout # Rollout으로 생성
     name: member-deploy
-  targetCPUUtilizationPercentage: 80
-  targetMemoryUtilizationPercentage: 80
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
 status:
   currentReplicas: 2
   desiredReplicas: 2
