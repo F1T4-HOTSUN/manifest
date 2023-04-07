@@ -104,6 +104,11 @@ spec:
         ports:
         - containerPort: 8081
           name: member
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 400m
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
