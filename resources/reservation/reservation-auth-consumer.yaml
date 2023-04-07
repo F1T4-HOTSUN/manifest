@@ -29,7 +29,6 @@ metadata:
   name: reservation-auth-mail
   namespace: ticketaka-reservation
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: auth-mail
