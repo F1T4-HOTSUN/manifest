@@ -1,3 +1,26 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: auth-mail-deploy-hpa
+  namespace: ticketaka-reservation
+spec:
+  maxReplicas: 3
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: reservation-auth-mail
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+status:
+  currentReplicas: 2
+  desiredReplicas: 2
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,4 +53,11 @@ spec:
                 name: reservation-mail-sec
           image: ehdwn15100/ticketaka-auth-mail:1.4
           name: auth-mail
+          resources:
+            limits:
+              cpu: 800m
+              memory: 300M
+            requests:
+              cpu: 300m
+              memory: 50M         
       restartPolicy: Always

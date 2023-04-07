@@ -10,6 +10,29 @@ data:
   RABBITMQ_ID: dXNlcg==
   RABBITMQ_PASSWORD: dXNlcg==
 ---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mail-deploy-hpa
+  namespace: ticketaka-reservation
+spec:
+  maxReplicas: 3
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: reservation-mail
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+status:
+  currentReplicas: 2
+  desiredReplicas: 2
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,4 +65,12 @@ spec:
                 name: reservation-mail-sec
           image: ehdwn15100/ticketaka-mail:1.5
           name: mail
+          resources:
+            limits:
+              cpu: 800m
+              memory: 300M
+            requests:
+              cpu: 300m
+              memory: 50M
       restartPolicy: Always
+
