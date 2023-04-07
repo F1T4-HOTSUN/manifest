@@ -23,7 +23,6 @@ metadata:
   name: member-deploy
   namespace: ticketaka-member
 spec:
-  replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
