@@ -54,7 +54,7 @@ spec:
             - name: MAIL_SERVER
               value: smtp.gmail.com
             - name: MAIL_PORT
-              value: "465"
+              value: "587"
             - name: RABBITMQ_HOST
               value: reservation-rabbitmq-cluster-nodes
             - name: RABBITMQ_PORT
@@ -62,7 +62,7 @@ spec:
           envFrom:
             - secretRef:
                 name: reservation-mail-sec
-          image: ehdwn15100/test-ticketaka-mail:1.0
+          image: ehdwn15100/ticketaka-mail:1.6
           name: mail
           resources:
             limits:
