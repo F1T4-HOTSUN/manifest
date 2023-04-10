@@ -28,8 +28,8 @@ metadata:
   namespace: ticketaka-info
 spec:
   schedule: "CRON_TZ=Asia/Seoul 05 12 */1 * *"
-  successfulJobsHistoryLimit: 7
-  failedJobsHistoryLimit: 7
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
       template:
