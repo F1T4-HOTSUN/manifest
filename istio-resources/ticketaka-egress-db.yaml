@@ -1,0 +1,68 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: se-member-db
+  namespace: ticketaka-member
+spec:
+  hosts:
+  - se-member-db
+  addresses:
+  - 10.0.161.50/32
+  exportTo:
+  - "."  
+  ports:
+  - name: tcp
+    number: 3306
+    protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: STATIC
+  endpoints:
+    - address: 10.0.161.50
+      ports:
+        tcp: 3306
+---
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: se-prf-db
+  namespace: ticketaka-performance
+spec:
+  hosts:
+  - se-prf-db
+  addresses:
+  - 10.0.161.51/32
+  exportTo:
+  - "."
+  ports:
+  - name: tcp
+    number: 3306
+    protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: STATIC
+  endpoints:
+    - address: 10.0.161.51
+      ports:
+        tcp: 3306
+---
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: se-rsv-db
+  namespace: ticketaka-reservation
+spec:
+  hosts:
+  - se-rsv-db
+  addresses:
+  - 10.0.161.52/32
+  exportTo:
+  - "."
+  ports:
+  - name: tcp
+    number: 3306
+    protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: STATIC
+  endpoints:
+    - address: 10.0.161.52
+      ports:
+        tcp: 3306

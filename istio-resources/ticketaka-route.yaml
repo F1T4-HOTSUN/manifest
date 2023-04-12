@@ -1,0 +1,36 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ticketaka-front-back-vs
+spec:
+  hosts:
+    - ticketaka-front-svc.ticketaka-front.svc.cluster.local
+  http:
+    # reservation requiring token
+    - match:
+        - uri:
+            prefix: "/reservation"
+      route:
+        - destination:
+            host: reservation-svc.ticketaka-reservation.svc.cluster.local
+            port:
+              number: 8080
+    # member
+    - match:
+        - uri:
+            prefix: "/member"
+      route:
+        - destination:
+            host: member-svc.ticketaka-member.svc.cluster.local
+            port:
+              number: 8081
+    # performance
+    - match:
+        - uri:
+            prefix: "/performance"
+      route:
+        - destination:
+            host: performance-svc.ticketaka-performance.svc.cluster.local
+            port:
+              number: 8084

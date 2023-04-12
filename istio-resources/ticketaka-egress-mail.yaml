@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: se-mail
+  namespace: ticketaka-reservation
+spec:
+  hosts:
+  - "smtp.gmail.com"
+  exportTo:
+  - "."
+  ports:
+  - name: http
+    number: 80
+    protocol: HTTP
+  - name: https
+    number: 443
+    protocol: HTTPS
+  - name: tcp
+    number: 26
+    protocol: TCP
+  - name: tls
+    number: 587
+    protocol: TLS
+  - name: ssl
+    number: 465
+    protocol: TLS
+  resolution: DNS

@@ -1,0 +1,61 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: ticketaka-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: http
+      hosts:
+        - "ticketaka.shop"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ticketaka-gateway-vs
+spec:
+  hosts:
+    - "ticketaka.shop"
+  gateways:
+    - ticketaka-gateway
+  http:
+    # reservation requiring token
+    - match:
+        - uri:
+            prefix: "/reservation"
+      route:
+        - destination:
+            host: reservation-svc.ticketaka-reservation.svc.cluster.local
+            port:
+              number: 8080
+    # member
+    - match:
+        - uri:
+            prefix: "/member"
+      route:
+        - destination:
+            host: member-svc.ticketaka-member.svc.cluster.local
+            port:
+              number: 8081
+    # performance
+    - match:
+        - uri:
+            prefix: "/performance"
+      route:
+        - destination:
+            host: performance-svc.ticketaka-performance.svc.cluster.local
+            port:
+              number: 8084
+    # frontend
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            host: ticketaka-front-svc.ticketaka-front.svc.cluster.local
+            port:
+              number: 80

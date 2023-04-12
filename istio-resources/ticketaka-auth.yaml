@@ -1,0 +1,32 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: ticketaka-jwt
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  jwtRules:
+    - issuer: "Ticketaka"
+      jwksUri: "https://raw.githubusercontent.com/Project-Ticketaka/cert/main/public_key.json"
+      fromHeaders:
+        - name: authorization
+      outputClaimToHeaders:
+      - header: x-istio-jwt-sub
+        claim: sub
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ticketaka-authz
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  action: DENY
+  rules:
+    - from:
+        - source:
+            requestPrincipals: ["/member/info","/performance/rsv/*","/reservation/*"]
