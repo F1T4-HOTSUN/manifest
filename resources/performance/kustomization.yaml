@@ -4,7 +4,7 @@ images:
 - name: roheejae/ticketaka-data
   newTag: v0.0.11
 - name: roheejae/ticketaka-performance
-  newTag: v0.0.47
+  newTag: v0.0.48
 resources:
 - ns-performance.yaml
 - performance-configmap.yaml
