@@ -19,7 +19,7 @@ spec:
   - host: hotsun.store
     http:
       paths:
-      - pathType: Prefix
+      - pathType: ImplementationSpecific
         path: /
         backend:
           service:
