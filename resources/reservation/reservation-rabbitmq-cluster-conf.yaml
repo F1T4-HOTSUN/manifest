@@ -23,7 +23,8 @@ spec:
                 name: definitions
   persistence:
     storage: 10Gi
-    storageClassName: rabbitmq-storageclass
+    storageClassName: gp2
+    # storageClassName: rabbitmq-storageclass
   rabbitmq:
     additionalConfig: |
       load_definitions = /path/to/exported/definitions.json
