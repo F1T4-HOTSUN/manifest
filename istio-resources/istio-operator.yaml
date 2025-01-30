@@ -19,10 +19,10 @@ spec:
         hpaSpec:
           minReplicas: 1
         service:
-          type: NodePort
-        serviceAnnotations:
-          alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
-          alb.ingress.kubernetes.io.healthcheck-port: "31000"
+          type: ClusterIP
+        # serviceAnnotations:
+        #   alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
+        #   alb.ingress.kubernetes.io.healthcheck-port: "31000"
     pilot:
       enabled: true
       k8s:

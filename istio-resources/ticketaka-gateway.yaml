@@ -11,7 +11,7 @@ spec:
         name: http
         protocol: http
       hosts:
-        - "ticketaka.shop"
+        - "hotsun.store"
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
@@ -19,7 +19,7 @@ metadata:
   name: ticketaka-gateway-vs
 spec:
   hosts:
-    - "ticketaka.shop"
+    - "hotsun.store"
   gateways:
     - ticketaka-gateway
   http:
