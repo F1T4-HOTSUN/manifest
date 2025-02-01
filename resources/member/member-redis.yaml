@@ -30,6 +30,8 @@ kind: Pod
 metadata:
   name: redis
   namespace: ticketaka-member
+  annotations:
+    sidecar.istio.io/inject: "false" 
   labels:
       app: redis
 spec:
