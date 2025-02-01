@@ -8,5 +8,7 @@ resources:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
+- name: harbor.hotsun.store/ticketaka/ticketaka-front
+  newTag: v0.0.3
 - name: roheejae/ticketaka-front
   newTag: v0.0.83
