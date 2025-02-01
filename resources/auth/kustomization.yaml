@@ -10,5 +10,5 @@ images:
 resources:
 - ns-auth.yaml
 - auth-cm.yaml
-- auth-redis.yaml
+#- auth-redis.yaml
 - auth.yaml
