@@ -3,6 +3,8 @@ kind: Kustomization
 images:
 - name: /
   newName: /
+- name: harbor.hotsun.store/ticketaka/ticketaka-auth
+  newTag: v0.0.1
 - name: roheejae/ticketaka-auth
   newTag: v0.0.34
 resources:
