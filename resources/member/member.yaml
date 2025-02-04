@@ -6,9 +6,9 @@ metadata:
 spec:
   maxReplicas: 3
   minReplicas: 1
-  scaleTargetRef:
-    apiVersion: argoproj.io/v1alpha1
-    kind: Rollout
+ scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
     name: member-deploy
   metrics:
   - type: Resource
