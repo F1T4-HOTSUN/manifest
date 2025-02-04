@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/group.name: front-ingress-group
     alb.ingress.kubernetes.io/backend-protocol: HTTP
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:961341524048:certificate/42a1ca09-abae-4691-9c98-4ffe410bfb24
+    alb.ingress.kubernetes.io/certificate-arn: "{{ .Values.acmCertificateArn[.Values.region] }}"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     external-dns.alpha.kubernetes.io/hostname: hotsun.store
