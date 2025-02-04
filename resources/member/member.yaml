@@ -8,7 +8,7 @@ spec:
   minReplicas: 1
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
-    kind: Rollout # Rollout으로 생성
+    kind: Rollout
     name: member-deploy
   metrics:
   - type: Resource
