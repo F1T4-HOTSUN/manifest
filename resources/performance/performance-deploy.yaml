@@ -22,13 +22,12 @@ status:
   desiredReplicas: 2
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Rollout # Rollout으로 생성
+kind: Rollout
 metadata:
-  labels:
-    app: performance
   name: performance-deploy
   namespace: ticketaka-performance
 spec:
+  replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
