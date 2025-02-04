@@ -80,11 +80,11 @@ spec:
               key: MEMBER_PORT
         resources:
           limits:
-            cpu: 1000m
-            memory: 1000M
+            cpu: 500m
+            memory: 750M
           requests:
-            cpu: 400m
-            memory: 500M
+            cpu: 200m
+            memory: 300M
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
