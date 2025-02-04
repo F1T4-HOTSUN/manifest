@@ -17,9 +17,6 @@ spec:
       target:
         type: Utilization
         averageUtilization: 80
-status:
-  currentReplicas: 2
-  desiredReplicas: 2
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -38,7 +35,12 @@ spec:
         app: performance
     spec:
       containers:
-      - env:
+      - name: performance
+        image: roheejae/ticketaka-performance:v0.0.26
+        ports:
+        - containerPort: 8084
+          name: performance
+        env:
         - name: SERVER_PORT
           value: "8084"
         - name: SPRING_DATASOURCE_URL
@@ -76,11 +78,6 @@ spec:
             configMapKeyRef:
               name: performance-configmap
               key: MEMBER_PORT
-        image: roheejae/ticketaka-performance:v0.0.26
-        name: performance
-        ports:
-        - containerPort: 8084
-          name: performance
         resources:
           limits:
             cpu: 1000m
