@@ -16,6 +16,7 @@ metadata:
   name: reservation-deploy-hpa
   namespace: ticketaka-reservation
 spec:
+  replicas: 1
   maxReplicas: 3
   minReplicas: 1
   scaleTargetRef:
@@ -29,9 +30,6 @@ spec:
       target:
         type: Utilization
         averageUtilization: 80
-status:
-  currentReplicas: 2
-  desiredReplicas: 2
 
 ---
 apiVersion: argoproj.io/v1alpha1
