@@ -17,9 +17,6 @@ spec:
         target:
           type: Utilization
           averageUtilization: 80
-status:
-  currentReplicas: 2
-  desiredReplicas: 2
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout # Rollout으로 생성
@@ -29,6 +26,7 @@ metadata:
   name: member-deploy
   namespace: ticketaka-member
 spec:
+  replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
