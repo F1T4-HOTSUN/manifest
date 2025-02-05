@@ -80,11 +80,6 @@ spec:
             configMapKeyRef:
               name: performance-configmap
               key: MEMBER_PORT
-        image: harbor.hotsun.store/ticketaka/ticketaka-performance:v0.0.1
-        name: performance
-        ports:
-        - containerPort: 8084
-          name: performance
         resources:
           limits:
             cpu: 500m
