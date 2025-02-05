@@ -16,7 +16,6 @@ metadata:
   name: reservation-deploy-hpa
   namespace: ticketaka-reservation
 spec:
-  replicas: 1
   maxReplicas: 3
   minReplicas: 1
   scaleTargetRef:
@@ -40,6 +39,7 @@ metadata:
   name: reservation-deploy
   namespace: ticketaka-reservation
 spec:
+  replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
