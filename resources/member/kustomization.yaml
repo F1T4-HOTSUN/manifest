@@ -10,5 +10,3 @@ kind: Kustomization
 images:
 - name: harbor.hotsun.store/ticketaka/ticketaka-member
   newTag: v0.0.2
-- name: roheejae/ticketaka-member
-  newTag: v0.0.47
