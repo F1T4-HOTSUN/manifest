@@ -27,8 +27,7 @@ metadata:
   name: info-performance
   namespace: ticketaka-info
 spec:
-  # schedule: "CRON_TZ=Asia/Seoul 05 12 */1 * *"
-  schedule: "05 12 */1 * *"
+  schedule: "CRON_TZ=Asia/Seoul 05 12 */1 * *"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
   jobTemplate:
@@ -37,39 +36,12 @@ spec:
         spec:
           containers:
           - name: info-performance
-            image: harbor.hotsun.store/ticketaka/ticketaka-data:v0.0.21
+            image: roheejae/ticketaka-data:v0.0.9
             imagePullPolicy: Always
             env:
                 - name: DATABASE_HOST
-                  value: performance-db-svc.ticketaka-performance.svc.cluster.local
-                  # value: 10.0.161.51
+                  value: 10.0.161.51
             envFrom:
                 - secretRef:
                     name: info-performance-sec
           restartPolicy: OnFailure
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: info-performance
-  namespace: ticketaka-info
-spec:
-  backoffLimit: 6  # 실패 시 최대 6번 재시도
-  template:
-    spec:
-      restartPolicy: OnFailure
-      containers:
-      - name: info-performance
-        image: harbor.hotsun.store/ticketaka/ticketaka-data:v0.0.21
-        imagePullPolicy: Always
-        env:
-          - name: DATABASE_HOST
-            value: performance-db-svc.ticketaka-performance.svc.cluster.local
-          - name: KOPIS_SERVICE_KEY
-            valueFrom:
-              secretKeyRef:
-                name: info-performance-sec
-                key: KOPIS_SERVICE_KEY
-        envFrom:
-          - secretRef:
-              name: info-performance-sec
