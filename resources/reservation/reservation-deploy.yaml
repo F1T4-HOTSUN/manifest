@@ -29,6 +29,9 @@ spec:
       target:
         type: Utilization
         averageUtilization: 80
+status:
+  currentReplicas: 2
+  desiredReplicas: 2
 
 ---
 apiVersion: argoproj.io/v1alpha1
