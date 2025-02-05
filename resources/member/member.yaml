@@ -8,26 +8,27 @@ spec:
   minReplicas: 1
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
-    kind: Rollout
+    kind: Rollout # Rollout으로 생성
     name: member-deploy
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 80
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
 status:
   currentReplicas: 2
   desiredReplicas: 2
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+kind: Rollout # Rollout으로 생성
 metadata:
+  labels:
+    app: member
   name: member-deploy
   namespace: ticketaka-member
 spec:
-  replicas: 1 # 수동 설정
   revisionHistoryLimit: 1
   selector:
     matchLabels:
@@ -37,102 +38,100 @@ spec:
       labels:
         app: member
     spec:
-      imagePullSecrets:
-      - name: regcred
       containers:
-      - env:
-        - name: SERVER_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: SERVER_PORT
-        - name: SPRING_DATASOURCE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: SPRING_DATASOURCE_URL        
-        - name: RESERVATION_URL
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: RESERVATION_URL
-        - name: RESERVATION_PORT
-          valueFrom: 
-            configMapKeyRef:
-              name: member-cm
-              key: RESERVATION_PORT
-        - name: SPRING_DATASOURCE_USERNAME
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: SPRING_DATASOURCE_USERNAME
-        - name: SPRING_DATASOURCE_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: SPRING_DATASOURCE_PASSWORD
-        - name: RABBITMQ_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: RABBITMQ_HOST
-        - name: RABBITMQ_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: RABBITMQ_PORT
-        - name: RABBITMQ_USERNAME
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: RABBITMQ_USERNAME
-        - name: RABBITMQ_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: RABBITMQ_PASSWORD
-        - name: REDIS_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: REDIS_HOST
-        - name: REDIS_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: member-cm
-              key: REDIS_PORT
-        - name: PRIVATE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: member-secret
-              key: PRIVATE_KEY
-        image: harbor.hotsun.store/ticketaka/ticketaka-member:v0.0.2
-        name: member
-        ports:
-        - containerPort: 8081
+        - env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: SERVER_PORT
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: SPRING_DATASOURCE_URL
+            - name: RESERVATION_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: RESERVATION_URL
+            - name: RESERVATION_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: RESERVATION_PORT
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: SPRING_DATASOURCE_PASSWORD
+            - name: RABBITMQ_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: RABBITMQ_HOST
+            - name: RABBITMQ_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: RABBITMQ_PORT
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: RABBITMQ_USERNAME
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: RABBITMQ_PASSWORD
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: member-cm
+                  key: REDIS_PORT
+            - name: PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: member-secret
+                  key: PRIVATE_KEY
+          image: roheejae/ticketaka-member:v0.0.14
           name: member
-        resources:
-          limits:
-            cpu: 500m
-            memory: 512M
-          requests:
-            cpu: 100m
-            memory: 256M
-        volumeMounts:
-        - name: tz-seoul
-          mountPath: /etc/localtime
+          ports:
+            - containerPort: 8081
+              name: member
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512M
+            requests:
+              cpu: 100m
+              memory: 256M
+          volumeMounts:
+            - name: tz-seoul
+              mountPath: /etc/localtime
       volumes:
-      - name: tz-seoul
-        hostPath:
-          path: /usr/share/zoneinfo/Asia/Seoul
+        - name: tz-seoul
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Seoul
       restartPolicy: Always
   strategy:
     canary:
-      maxSurge: "100%"    # canary 배포로 생성할 pod의 비율
-      maxUnavailable: 0  # 업데이트 될 때 사용할 수 없는 pod의 최대 수
+      maxSurge: "100%" # canary 배포로 생성할 pod의 비율
+      maxUnavailable: 0 # 업데이트 될 때 사용할 수 없는 pod의 최대 수
       steps:
-      - setWeight: 100    # 카나리로 배포된 서버로 전송해야될 트래픽 비율
-      - pause: { duration: 10m }        # AutoPromotion Time (하단 설명 참조)
+        - setWeight: 100 # 카나리로 배포된 서버로 전송해야될 트래픽 비율
+        - pause: { duration: 10m } # AutoPromotion Time (하단 설명 참조)
 ---
 apiVersion: v1
 kind: Service
@@ -144,9 +143,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8081
-    name: http-mem
-    targetPort: 8081
-    protocol: TCP
+    - port: 8081
+      name: http-mem
+      targetPort: 8081
+      protocol: TCP
   selector:
     app: member
