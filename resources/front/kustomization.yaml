@@ -5,6 +5,7 @@ resources:
 - ticketaka-front-deploy.yaml
 - ticketaka-front-svc.yaml
 - ticketaka-front-ingress.yaml
+- harborscrt-front.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:

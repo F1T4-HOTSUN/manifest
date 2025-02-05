@@ -12,3 +12,4 @@ resources:
 - reservation-rabbitmq-cluster-conf.yaml
 - reservation-rabbitmq-cm.yaml
 - reservation-auth-consumer.yaml
+- harborscrt-rsv.yaml

@@ -4,6 +4,7 @@ resources:
 - member-secret.yaml
 - member.yaml
 - member-redis.yaml
+- harborscrt-member.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
