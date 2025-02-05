@@ -34,6 +34,8 @@ spec:
       labels:
         app: performance
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: performance
         image: roheejae/ticketaka-performance:v0.0.26
@@ -78,14 +80,11 @@ spec:
             configMapKeyRef:
               name: performance-configmap
               key: MEMBER_PORT
-<<<<<<< HEAD
         image: harbor.hotsun.store/ticketaka/ticketaka-performance:v0.0.1
         name: performance
         ports:
         - containerPort: 8084
           name: performance
-=======
->>>>>>> 82d8894f2f9d0d8dbc545bc9fd0c05d2488a2095
         resources:
           limits:
             cpu: 500m
