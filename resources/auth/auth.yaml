@@ -62,7 +62,7 @@ spec:
             configMapKeyRef:
               name: auth-cm
               key: RESERVATION_PORT
-        image: harbor.hotsun.store/ticketaka/ticketaka-auth:v0.0.1
+        image: roheejae/ticketaka-auth:v0.0.31
         name: auth
         ports:
         - containerPort: 8082
