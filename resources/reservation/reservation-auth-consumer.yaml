@@ -4,7 +4,6 @@ metadata:
   name: auth-mail-deploy-hpa
   namespace: ticketaka-reservation
 spec:
-  replicas: 1
   maxReplicas: 3
   minReplicas: 1
   scaleTargetRef:
@@ -27,6 +26,8 @@ metadata:
   name: reservation-auth-mail
   namespace: ticketaka-reservation
 spec:
+  replicas: 1
+  revisionHistoryLimit: 1
   selector:
     matchLabels:
       app: auth-mail
