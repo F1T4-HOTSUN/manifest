@@ -27,7 +27,8 @@ metadata:
   name: info-performance
   namespace: ticketaka-info
 spec:
-  schedule: "CRON_TZ=Asia/Seoul 05 12 */1 * *"
+  schedule: "05 12 */1 * *"
+  timeZone: "Asia/Seoul"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
   jobTemplate:
