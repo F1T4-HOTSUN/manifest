@@ -66,10 +66,10 @@ spec:
           name: mail
           resources:
             limits:
-              cpu: 800m
-              memory: 300M
+              cpu: 500m
+              memory: 256M
             requests:
-              cpu: 300m
-              memory: 50M
+              cpu: 100m
+              memory: 256M
       restartPolicy: Always
 
