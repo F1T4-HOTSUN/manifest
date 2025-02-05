@@ -5,7 +5,7 @@ metadata:
   namespace: ticketaka-reservation
 spec:
   service:
-    type: LoadBalancer
+    type: ClusterIP
   replicas: 1
   override:
     statefulSet:
