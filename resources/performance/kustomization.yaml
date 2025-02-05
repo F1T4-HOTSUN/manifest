@@ -3,10 +3,8 @@ kind: Kustomization
 images:
 - name: harbor.hotsun.store/ticketaka/ticketaka-performance
   newTag: v0.0.1
-- name: roheejae/ticketaka-data
-  newTag: v0.0.11
-- name: roheejae/ticketaka-performance
-  newTag: v0.0.49
+- name: harbor.hotsun.store/ticketaka/ticketaka-data
+  newTag: v0.0.21
 resources:
 - ns-performance.yaml
 - performance-configmap.yaml
