@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: argocd
+  name: argocd-sync-role
+rules:
+  - apiGroups: ["argoproj.io"]
+    resources: ["applications"]
+    verbs: ["get", "list", "sync"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-sync-binding
+  namespace: argocd
+subjects:
+  - kind: User
+    name: admin  # 로그인한 사용자 이름 (현재 admin으로 되어 있으면 admin 사용)
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: argocd-sync-role
+  apiGroup: rbac.authorization.k8s.io
+

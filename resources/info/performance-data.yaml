@@ -37,7 +37,7 @@ spec:
         spec:
           containers:
           - name: info-performance
-            image: roheejae/ticketaka-data:v0.0.9
+            image: harbor.hotsun.store/ticketaka/ticketaka-data:v0.0.21
             imagePullPolicy: Always
             env:
                 - name: DATABASE_HOST
@@ -60,7 +60,7 @@ spec:
       restartPolicy: OnFailure
       containers:
       - name: info-performance
-        image: roheejae/ticketaka-data:v0.0.9
+        image: harbor.hotsun.store/ticketaka/ticketaka-data:v0.0.21
         imagePullPolicy: Always
         env:
           - name: DATABASE_HOST

@@ -3,8 +3,6 @@ kind: Kustomization
 images:
 - name: harbor.hotsun.store/ticketaka/ticketaka-reservation
   newTag: v0.0.1
-- name: roheejae/ticketaka-reservation
-  newTag: v0.0.39
 resources:
 - cluster-operator.yml
 - reservation-consumer.yaml
