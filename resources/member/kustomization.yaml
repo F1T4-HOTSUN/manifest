@@ -1,6 +1,7 @@
 resources:
 - ns-member.yaml
 - member-cm.yaml
+- member-db.yaml
 - member-secret.yaml
 - member.yaml
 - member-redis.yaml
