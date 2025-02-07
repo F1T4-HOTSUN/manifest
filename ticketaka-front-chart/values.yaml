@@ -125,5 +125,5 @@ affinity: {}
 
 acmCertificateArn:
   ap-northeast-2: "arn:aws:acm:ap-northeast-2:961341524048:certificate/42a1ca09-abae-4691-9c98-4ffe410bfb24"
-  ap-northeast-3: "arn:aws:acm:ap-northeast-3:961341524048:certificate/35bb4205-04f8-4ab0-a8c3-194aed409251"
+  ap-northeast-3: "arn:aws:acm:ap-northeast-3:961341524048:certificate/940e0f55-3693-429f-ba26-685785ad36b5"
 
