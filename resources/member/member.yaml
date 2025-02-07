@@ -36,6 +36,8 @@ spec:
       labels:
         app: member
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
         - env:
             - name: SERVER_PORT
