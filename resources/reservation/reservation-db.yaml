@@ -46,6 +46,8 @@ metadata:
     type: db
   name: reservation-db
   namespace: ticketaka-reservation
+  annotations:
+    sidecar.istio.io/inject: "false"
 spec:
   replicas: 1
   strategy:
