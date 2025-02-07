@@ -33,8 +33,6 @@ metadata:
     type: db
   name: performance-db
   namespace: ticketaka-performance
-  annotations:
-    sidecar.istio.io/inject: "false"
 spec:
   replicas: 1
   strategy:
@@ -43,6 +41,8 @@ spec:
     matchLabels:
       type: db
   template:
+    annotations:
+      sidecar.istio.io/inject: "false"
     metadata:
       labels:
         type: db
