@@ -5,6 +5,7 @@ images:
   newTag: v0.0.1
 resources:
 - cluster-operator.yml
+- reservation-db.yaml
 - reservation-consumer.yaml
 - reservation-deploy.yaml
 - reservation-rabbitmq-cluster-conf.yaml
