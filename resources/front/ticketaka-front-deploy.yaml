@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ticketaka-front
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -31,7 +31,7 @@ spec:
           name: ticketaka-front-cm
         env:
         - name: REACT_APP_BASE_URL
-          value: http://192.168.56.100:30030 # 여기 주소 바꿔주세염
+          value: http://hotsun.store # 여기 주소 바꿔주세염
         - name: REACT_APP_NAVER_SECRET
           valueFrom:
             secretKeyRef:
