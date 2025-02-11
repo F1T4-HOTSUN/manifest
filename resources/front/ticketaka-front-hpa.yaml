@@ -9,6 +9,7 @@ spec:
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
+    name: ticketaka-front
   metrics:
     - type: Resource
       resource:
