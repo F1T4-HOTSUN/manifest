@@ -10,7 +10,7 @@ data:
   RESERVATION_PORT: "8080"
   SPRING_DATASOURCE_USERNAME: user
   SPRING_DATASOURCE_PASSWORD: user
-  RABBITMQ_HOST: reservation-rabbitmq-cluster.ticketaka-reservation.svc.cluster.local
+  RABBITMQ_HOST: reservation-rabbitmq-cluster-nodes.ticketaka-reservation.svc.cluster.local
   RABBITMQ_PORT: "5672"
   RABBITMQ_USERNAME: user
   RABBITMQ_PASSWORD: user

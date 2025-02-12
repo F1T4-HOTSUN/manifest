@@ -45,7 +45,7 @@ spec:
             - name: MAIL_PORT
               value: "587"
             - name: RABBITMQ_HOST
-              value: reservation-rabbitmq-cluster
+              value: reservation-rabbitmq-cluster-nodes
             - name: RABBITMQ_PORT
               value: "5672"
           envFrom:
