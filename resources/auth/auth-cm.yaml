@@ -12,4 +12,4 @@ data:
   PERFORMANCE_URL: performance-svc.ticketaka-performance.svc.cluster.local
   PERFORMANCE_PORT: "8084"
   RESERVATION_URL: reservation-svc.ticketaka-reservation.svc.cluster.local
-  RESERVATION_PORT: "8083"
+  RESERVATION_PORT: "8080"

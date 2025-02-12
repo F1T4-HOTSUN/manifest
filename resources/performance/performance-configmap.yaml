@@ -9,3 +9,5 @@ data:
   SPRING_REDIS_PORT: '6379'
   MEMBER_URL: member-svc.ticketaka-member.svc.cluster.local
   MEMBER_PORT: '8081'
+  REDIS_URL: performance-redis-svc
+  REDIS_PORT: "6379"
