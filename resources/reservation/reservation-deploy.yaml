@@ -58,7 +58,7 @@ spec:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mariadb://reservation-db-svc.ticketaka-reservation.svc.cluster.local:3306/ticketaka?serverTimezone=Asia/Seoul
             - name: RABBITMQ_HOST
-              value: reservation-rabbitmq-cluster-nodes
+              value: reservation-rabbitmq-cluster
             - name: RABBITMQ_PORT
               value: "5672"
           envFrom:
