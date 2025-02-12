@@ -14,5 +14,5 @@ data:
   RABBITMQ_PORT: "5672"
   RABBITMQ_USERNAME: user
   RABBITMQ_PASSWORD: user
-  REDIS_HOST: redis-svc
+  REDIS_HOST: redis-svc.ticketaka-member.svc.cluster.local
   REDIS_PORT: "6379"
