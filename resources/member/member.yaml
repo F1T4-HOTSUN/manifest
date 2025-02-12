@@ -39,84 +39,84 @@ spec:
       imagePullSecrets:
       - name: regcred
       containers:
-        - env:
-          - name: SERVER_PORT
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: SERVER_PORT
-          - name: SPRING_DATASOURCE_URL
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: SPRING_DATASOURCE_URL
-          - name: RESERVATION_URL
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: RESERVATION_URL
-          - name: RESERVATION_PORT
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: RESERVATION_PORT
-          - name: SPRING_DATASOURCE_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: SPRING_DATASOURCE_USERNAME
-          - name: SPRING_DATASOURCE_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: SPRING_DATASOURCE_PASSWORD
-          - name: RABBITMQ_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: RABBITMQ_HOST
-          - name: RABBITMQ_PORT
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: RABBITMQ_PORT
-          - name: RABBITMQ_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: RABBITMQ_USERNAME
-          - name: RABBITMQ_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: RABBITMQ_PASSWORD
-          - name: REDIS_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: REDIS_HOST
-          - name: REDIS_PORT
-            valueFrom:
-              configMapKeyRef:
-                name: member-cm
-                key: REDIS_PORT
-          - name: PRIVATE_KEY
-            valueFrom:
-              secretKeyRef:
-                name: member-secret
-                key: PRIVATE_KEY
-          image: harbor.hotsun.store/ticketaka/ticketaka-member:v0.0.3
+      - env:
+        - name: SERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SERVER_PORT
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SPRING_DATASOURCE_URL        
+        - name: RESERVATION_URL
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: RESERVATION_URL
+        - name: RESERVATION_PORT
+          valueFrom: 
+            configMapKeyRef:
+              name: member-cm
+              key: RESERVATION_PORT
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SPRING_DATASOURCE_USERNAME
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: SPRING_DATASOURCE_PASSWORD
+        - name: RABBITMQ_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: RABBITMQ_HOST
+        - name: RABBITMQ_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: RABBITMQ_PORT
+        - name: RABBITMQ_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: RABBITMQ_USERNAME
+        - name: RABBITMQ_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: RABBITMQ_PASSWORD
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: member-cm
+              key: REDIS_PORT
+        - name: PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: member-secret
+              key: PRIVATE_KEY
+        image: harbor.hotsun.store/ticketaka/ticketaka-member:v0.0.4
+        name: member
+        ports:
+        - containerPort: 8081
           name: member
-          ports:
-            - containerPort: 8081
-              name: member
-          resources:
-            limits:
-              cpu: 500m
-              memory: 512M
-            requests:
-              cpu: 100m
-              memory: 256M
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000M
+          requests:
+            cpu: 400m
+            memory: 500M
         volumeMounts:
         - name: tz-seoul
           mountPath: /etc/localtime
