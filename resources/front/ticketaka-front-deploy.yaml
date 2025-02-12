@@ -20,7 +20,7 @@ spec:
       - name: regcred
       containers:
       - name: ticketaka-front
-        image: harbor.hotsun.store/ticketaka/ticketaka-front:v0.0.6
+        image: harbor.hotsun.store/ticketaka/ticketaka-front:v0.0.27
         imagePullPolicy: Always
         ports:
         - containerPort: 80

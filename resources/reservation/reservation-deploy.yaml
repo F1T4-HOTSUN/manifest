@@ -64,7 +64,7 @@ spec:
           envFrom:
             - secretRef:
                 name: reservation-deploy-sec
-          image: harbor.hotsun.store/ticketaka/ticketaka-reservation:v0.0.1
+          image: harbor.hotsun.store/ticketaka/ticketaka-reservation:v0.0.2
           name: reservation
           ports:
             - containerPort: 8080

@@ -105,7 +105,7 @@ spec:
             secretKeyRef:
               name: member-secret
               key: PRIVATE_KEY
-        image: harbor.hotsun.store/ticketaka/ticketaka-member:v0.0.4
+        image: harbor.hotsun.store/ticketaka/ticketaka-member:v0.0.8
         name: member
         ports:
         - containerPort: 8081
