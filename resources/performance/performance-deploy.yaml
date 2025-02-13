@@ -64,7 +64,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: performance-configmap
-              key: SREDIS_URL
+              key: REDIS_URL
         - name: REDIS_PORT
           valueFrom:
             configMapKeyRef:
