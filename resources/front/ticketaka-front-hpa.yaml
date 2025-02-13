@@ -4,7 +4,7 @@ metadata:
   name: front-deploy-hpa
   namespace: ticketaka-front
 spec:
-  maxReplicas: 3
+  maxReplicas: 1
   minReplicas: 1
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
