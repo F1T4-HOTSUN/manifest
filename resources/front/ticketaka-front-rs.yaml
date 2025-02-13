@@ -31,7 +31,7 @@ spec:
             secretKeyRef:
               key: REACT_APP_KOPIS_SECRET
               name: ticketaka-front-secret
-        image: harbor.hotsun.store/ticketaka/ticketaka-front:v0.0.27
+        image: harbor.hotsun.store/ticketaka/ticketaka-front:v0.0.35
         imagePullPolicy: Always
         name: ticketaka-front
         ports:
