@@ -1,4 +1,3 @@
-# - ticketaka-front-ingress.yaml
 resources:
 - ns-ticketaka-front.yaml
 - ticketaka-front-cm.yaml
