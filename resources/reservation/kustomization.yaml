@@ -12,4 +12,3 @@ resources:
 - reservation-rabbitmq-cm.yaml
 - reservation-auth-consumer.yaml
 - harborscrt-rsv.yaml
-- rabbitmq-service.yaml
