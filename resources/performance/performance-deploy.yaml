@@ -38,7 +38,7 @@ spec:
       - name: regcred
       containers:
       - name: performance
-        image: harbor.hotsun.store/ticketaka/ticketaka-performance:v0.0.10
+        image: harbor.hotsun.store/ticketaka/ticketaka-performance:v0.0.12
         ports:
         - containerPort: 8084
           name: performance
