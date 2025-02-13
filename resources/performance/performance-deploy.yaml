@@ -60,16 +60,16 @@ spec:
             secretKeyRef:
               name: performance-secret
               key: SPRING_DATASOURCE_PASSWORD
-        - name: SPRING_REDIS_HOST
+        - name: REDIS_URL
           valueFrom:
             configMapKeyRef:
               name: performance-configmap
-              key: SPRING_REDIS_HOST
-        - name: SPRING_REDIS_PORT
+              key: SREDIS_URL
+        - name: REDIS_PORT
           valueFrom:
             configMapKeyRef:
               name: performance-configmap
-              key: SPRING_REDIS_PORT
+              key: REDIS_PORT
         - name: MEMBER_URL
           valueFrom:
             configMapKeyRef:
