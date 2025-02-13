@@ -5409,7 +5409,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: rabbitmq-cluster-operator
-  namespace: rabbitmq-system
+  namespace: ticketaka-reservation
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -5419,7 +5419,7 @@ metadata:
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
   name: rabbitmq-cluster-leader-election-role
-  namespace: rabbitmq-system
+  namespace: ticketaka-reservation
 rules:
 - apiGroups:
   - coordination.k8s.io
@@ -5567,7 +5567,7 @@ metadata:
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
   name: rabbitmq-cluster-leader-election-rolebinding
-  namespace: rabbitmq-system
+  namespace: ticketaka-reservation
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -5575,7 +5575,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: rabbitmq-cluster-operator
-  namespace: rabbitmq-system
+  namespace: ticketaka-reservation
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -5592,7 +5592,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: rabbitmq-cluster-operator
-  namespace: rabbitmq-system
+  namespace: ticketaka-reservation
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -5602,7 +5602,7 @@ metadata:
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
   name: rabbitmq-cluster-operator
-  namespace: rabbitmq-system
+  namespace: ticketaka-reservation
 spec:
   replicas: 1
   selector:
