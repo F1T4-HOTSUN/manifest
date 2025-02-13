@@ -5,9 +5,7 @@ metadata:
   namespace: ticketaka-performance
 data:
   SPRING_DATASOURCE_URL: jdbc:mariadb://performance-db-svc.ticketaka-performance.svc.cluster.local:3306/ticketaka?serverTimezone=Asia/Seoul
-  #SPRING_REDIS_HOST: performance-redis-svc
-  #SPRING_REDIS_PORT: '6379'
   MEMBER_URL: member-svc.ticketaka-member.svc.cluster.local
-  MEMBER_PORT: '8081'
-  REDIS_URL: performance-redis-svc
-  REDIS_PORT: '6379'
+  MEMBER_PORT: "8081"
+  SPRING_REDIS_HOST: performance-redis-svc.ticketaka-performance.svc.cluster.local
+  SPRING_REDIS_PORT: "6379"
