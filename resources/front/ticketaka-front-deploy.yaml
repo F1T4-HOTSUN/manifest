@@ -21,6 +21,11 @@ spec:
       containers:
       - name: ticketaka-front
         image: harbor.hotsun.store/ticketaka/ticketaka-front:v0.0.46
+        resources:
+          requests:
+            cpu: 80
+          limits:
+            cpu: 80
         imagePullPolicy: Always
         ports:
         - containerPort: 80
